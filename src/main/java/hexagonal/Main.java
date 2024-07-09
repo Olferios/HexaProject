@@ -3,6 +3,7 @@ package hexagonal;
 import java.util.Scanner;
 
 import aplication.CreateUserUseCase;
+import aplication.DeleteUserUseCase;
 import aplication.FindUserUseCase;
 import domain.service.UserService;
 import infraestructure.in.UserController;
@@ -19,7 +20,8 @@ public class Main {
         UserService userService = new UserRepository();
         CreateUserUseCase createUserUseCase = new CreateUserUseCase(userService);
         FindUserUseCase findUserUseCase=new FindUserUseCase(userService);
-        UserController consoleAdapter = new UserController(createUserUseCase,findUserUseCase);
+        DeleteUserUseCase deleteUserById=new DeleteUserUseCase(userService);
+        UserController consoleAdapter = new UserController(createUserUseCase,findUserUseCase,deleteUserById);
         try (Scanner scanner = new Scanner(System.in)) {
             int option = scanner.nextInt();
             switch (option) {
@@ -34,7 +36,8 @@ public class Main {
                     consoleAdapter.find();
                     break;
                 case 3:
-                    // Eliminar Usuario
+                    System.out.println("aqui se eliminar un usuario");
+                    consoleAdapter.delete();
                     break;
                 case 4:
                     // Actualizar Usuario

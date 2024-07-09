@@ -1,6 +1,6 @@
 package aplication;
 
-import domain.entity.User;
+
 import domain.service.UserService;
 
 public class DeleteUserUseCase {
@@ -11,8 +11,8 @@ public class DeleteUserUseCase {
     }
 
     //metodo
-    public void execute (User user){
-        userService.deleteUserById(user);
+    public void execute (int id){
+         userService.deleteUserById(id);
 
     }
 

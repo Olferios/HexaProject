@@ -60,7 +60,7 @@ public class UserController {
             scanner.nextLine();
             
             User user=new User();
-            deleteUserUseCase.execute(user);
+            deleteUserUseCase.execute(id);
             System.out.println("Usuario eliminado con exito");
         }
     }
