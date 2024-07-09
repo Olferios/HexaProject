@@ -7,6 +7,7 @@ public interface UserService {
     //User findUserById(Long id);
     //User deleteuserById(Long id);
     User findUserById(int id);
+    void deleteUserById(int id);
 
 
 }

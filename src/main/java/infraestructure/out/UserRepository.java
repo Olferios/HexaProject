@@ -55,8 +55,20 @@ public class UserRepository implements UserService {
     
     }
 
-    //@Override
-    //public User deleteuserById(Long id) {
+    @Override
+    public void deleteUserById(int id) {
+        String sql = "DELETE  FROM users WHERE id=?";
+        try (Connection connection = DatabaseConfig.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql)){
+                            statement.setLong(1, id);
+                            statement.executeUpdate();
+                        }
+                        catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+
+    }
+
         
 }
 

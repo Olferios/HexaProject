@@ -3,21 +3,24 @@ package infraestructure.in;
 import java.util.Scanner;
 
 import aplication.CreateUserUseCase;
+import aplication.DeleteUserUseCase;
 import aplication.FindUserUseCase;
 import domain.entity.User;
 
 public class UserController {
     private CreateUserUseCase createUserUseCase;
     private FindUserUseCase findUserUseCase;
+    private DeleteUserUseCase deleteUserUseCase;
     
 
     // public UserController() {
     // }
 
 
-    public UserController(CreateUserUseCase createUserUseCase,FindUserUseCase findUserUseCase) {
+    public UserController(CreateUserUseCase createUserUseCase,FindUserUseCase findUserUseCase,DeleteUserUseCase deleteUserUseCase) {
         this.createUserUseCase = createUserUseCase;
         this.findUserUseCase = findUserUseCase;
+        this.deleteUserUseCase=deleteUserUseCase;
     }
 
 
@@ -48,6 +51,18 @@ public class UserController {
             System.out.println("email del usuario"+ user.getEmail());
         }
             
+    }
+
+    public void delete(){
+        try(Scanner scanner = new Scanner(System.in)){
+            System.out.println("ingrese id a eliminar");
+            int id = scanner.nextInt();
+            scanner.nextLine();
+            
+            User user=new User();
+            deleteUserUseCase.execute(user);
+            System.out.println("Usuario eliminado con exito");
+        }
     }
 
 }
